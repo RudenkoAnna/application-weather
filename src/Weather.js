@@ -2,7 +2,7 @@ import axios from "axios";
 import { RevolvingDot } from "react-loader-spinner";
 export default function Weather(props) {
   function handleResponse(response) {
-    alert(`the weather in Kyiv is ${response.data.main.temp}C`);
+    alert(`the weather in ${props.city}  is ${response.data.main.temp}C`);
   }
   let apiKey = "39d0e5ab9f18d4b08648c0969ea4cd9f";
   let units = "metric";
