@@ -25,6 +25,7 @@ body {
 }
 .Weather ul {
   margin: 0;
+  color: rgb(66, 78, 107);
 }
 .Weather li {
   font-size: 20px;
