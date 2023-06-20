@@ -1,6 +1,29 @@
 body {
   font-family: arial, sans-serif;
+  padding: 5%;
 }
 .Weather {
   border: 1px solid grey;
+  background: linear-gradient(
+    89.9deg,
+    rgb(208, 246, 255) 0.1%,
+    rgb(255, 237, 237) 47.9%,
+    rgb(255, 255, 231) 100.2%
+  );
+  padding: 16px;
+  margin: 20px auto;
+  border-radius: 5px;
+  max-width: 1000px;
+}
+.Weather h1 {
+  color: rgb(25, 35, 63);
+  font-size: 35px;
+  text-align: start;
+}
+.Weather ul {
+  margin: 0;
+}
+.Weather li {
+  font-size: 20px;
+  list-style-type: none;
 }
