@@ -1,17 +1,29 @@
 export default function CustomCloth(props) {
-  let icon;
+  let clothing;
+  let imageSrc;
 
   const temperature = props.temperature;
   if (temperature > 20) {
-    icon = <img src="./customicons/light-wear.png" alt="Shorts and T-Shirt" />;
+    clothing = "Shorts and T-Shirt";
+    imageSrc = "./customicons/light-wear.png";
   } else if (temperature >= 15 && temperature <= 20) {
-    icon = <img src="./customicons/warm-suit.png" alt="Pants and Hoodie" />;
+    clothing = "Pants and Hoodie";
+    imageSrc = "./customicons/warm-suit.png";
   } else if (temperature >= 5 && temperature < 15) {
-    icon = <img src="./customicons/jacket.png" alt="Jacket" />;
+    clothing = "Jacket";
+    imageSrc = "./customicons/jacket.png";
   } else if (temperature >= 0 && temperature < 5) {
-    icon = <img src="./customicons/coat.png" alt="Coat" />;
+    clothing = "Coat";
+    imageSrc = "./customicons/coat.png";
   } else {
-    icon = <img src="./customicons/winter-jacket.png" alt="Warm Jacket" />;
+    clothing = "Warm Jacket";
+    imageSrc = "./customicons/winter-jacket.png";
   }
-  return <div> {icon}</div>;
+
+  return (
+    <div>
+      <img src={imageSrc} alt={clothing} />
+      <p>{clothing}</p>
+    </div>
+  );
 }
