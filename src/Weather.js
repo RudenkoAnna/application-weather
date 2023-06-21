@@ -10,6 +10,7 @@ export default function Weather() {
     setWeatherData({
       ready: true,
       temperature: response.data.main.temp,
+      feels_like: response.data.main.feels_like,
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
       city: response.data.name,
@@ -61,7 +62,7 @@ export default function Weather() {
           </div>
           <div className="col-6">
             <ul>
-              <li>Precipitation 24%</li>
+              <li>Feels like: {Math.round(weatherData.feels_like)}°C</li>
               <li>Humidity {Math.round(weatherData.humidity)}%</li>
               <li>Wind:{Math.round(weatherData.wind)}km/h</li>
             </ul>
