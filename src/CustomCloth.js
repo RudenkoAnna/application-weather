@@ -23,7 +23,6 @@ export default function CustomCloth(props) {
   return (
     <div>
       <img src={imageSrc} alt={clothing} />
-      <p>{clothing}</p>
     </div>
   );
 }
