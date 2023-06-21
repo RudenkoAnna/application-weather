@@ -1,5 +1,6 @@
 import FormattedDate from "./FormattedDate";
 import WeatherIcon from "./WeatherIcon";
+import CustomCloth from "./CustomCloth";
 
 export default function WeatherInfo(props) {
   return (
@@ -26,6 +27,10 @@ export default function WeatherInfo(props) {
         </div>
         <div className="col-6">
           <ul>
+            <li>Recommended cloth to wear: </li>
+            <li>
+              <CustomCloth temperature={props.data.temperature} />
+            </li>
             <li>Feels like: {Math.round(props.data.feels_like)}°C</li>
             <li>Humidity {Math.round(props.data.humidity)}%</li>
             <li>Wind:{Math.round(props.data.wind)}km/h</li>
