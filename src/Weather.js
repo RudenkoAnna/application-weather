@@ -4,20 +4,21 @@ import "./Weather.css";
 import { RevolvingDot } from "react-loader-spinner";
 
 export default function Weather() {
-  const [ready, setReady] = useState(false);
-  const [weatherData, setWeatherData] = useState({});
+  const [weatherData, setWeatherData] = useState({ ready: false });
   function handleResponse(response) {
     console.log(response.data);
     setWeatherData({
+      ready: true,
       temperature: response.data.main.temp,
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
       city: response.data.name,
+      date: "Wednesday 07:00",
+      description: response.data.weather[0].description,
+      iconUrl: `https://ssl.gstatic.com/onebox/weather/64/cloudy.png`,
     });
-
-    setReady(true);
   }
-  if (ready) {
+  if (weatherData.ready) {
     return (
       <div className="Weather">
         <form>
@@ -41,15 +42,15 @@ export default function Weather() {
         </form>
         <h1> {weatherData.city}</h1>
         <ul>
-          <li>Wednesday 07:00</li>
-          <li>{weatherData.description}</li>
+          <li>{weatherData.date}</li>
+          <li className="text-capitalize">{weatherData.description}</li>
         </ul>
         <div className="row">
           <div className="col-6">
             <div className="clearfix">
               <img
-                src="https://ssl.gstatic.com/onebox/weather/64/cloudy.png"
-                alt="Mostly cloudy"
+                src={weatherData.iconUrl}
+                alt={weatherData.description}
               ></img>
 
               <span className="temperature">
