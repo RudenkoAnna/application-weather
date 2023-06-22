@@ -48,3 +48,7 @@ body {
   font-size: 16px;
   margin-left: 5px;
 }
+.cloth {
+  max-width: 60px;
+  max-height: 70px;
+}
