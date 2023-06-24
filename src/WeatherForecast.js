@@ -15,7 +15,7 @@ export default function WeatherForecast(props) {
     setForecast(response.data.daily);
     setLoaded(true);
   }
-  //comment
+
   if (loaded) {
     return (
       <div className="WeatherForecast">
