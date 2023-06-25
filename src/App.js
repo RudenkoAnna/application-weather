@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import Weather from "./Weather";
 import "bootstrap/dist/css/bootstrap.css";
 
