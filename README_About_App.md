@@ -11,7 +11,13 @@
 Команди для запуску додатку:
 
     Завантажте всі файли додатку.
-    Встановіть залежності за допомогою команди npm install react /// npm install bootstrap /// npm install axios /// npm install react-loader-spinner --save /// npm install sass
+    Встановіть залежності за допомогою команд:
+     npm install react
+      npm install bootstrap
+      npm install axios
+      npm install react-loader-spinner --save
+       npm install sass
+       npm install -g jasmine
     Запустіть додаток за допомогою команди npm start.
     Відкрийте веб-браузер і перейдіть за адресою http://localhost:3000 для перегляду додатку.
 
