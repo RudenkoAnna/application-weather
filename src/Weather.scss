@@ -1,0 +1,102 @@
+$distance-small: 5px;
+$distance-medium: 10px;
+$distance-standard: 20px;
+$distance-large: 50px;
+$distance-none: 0;
+
+@mixin animateBlock {
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  & {
+    opacity: 0;
+    transform: translateY(50px);
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-name: slideInUp;
+  }
+}
+
+@mixin blockSize($margin, $padding) {
+  @if $margin != null {
+    margin: $margin;
+  }
+  @if $padding != null {
+    padding: $padding;
+  }
+}
+
+body {
+  font-family: arial, sans-serif;
+  padding: $distance-standard;
+}
+
+.Weather {
+  border: 1px solid grey;
+  background: linear-gradient(
+    89.9deg,
+    rgb(208, 246, 255) 0.1%,
+    rgb(255, 237, 237) 47.9%,
+    rgb(255, 255, 231) 100.2%
+  );
+  padding: $distance-standard;
+  margin: $distance-large auto;
+  border-radius: $distance-small;
+
+  form {
+    margin-bottom: $distance-standard;
+  }
+
+  h1 {
+    color: rgb(44, 72, 150);
+    font-size: 35px;
+    text-align: start;
+    margin: $distance-standard 0 0 0;
+  }
+
+  ul {
+    margin: 0;
+    color: rgb(66, 78, 107);
+  }
+
+  li {
+    font-size: 20px;
+    list-style-type: none;
+  }
+
+  .temperature {
+    color: rgb(46, 64, 107);
+    font-weight: bold;
+    font-size: 45px;
+  }
+
+  canvas {
+    height: 64px;
+    float: left;
+  }
+
+  .unit {
+    color: rgb(55, 82, 143);
+    position: relative;
+    top: -20px;
+    font-weight: 400;
+    font-size: 16px;
+    margin-left: $distance-small;
+  }
+
+  .cloth {
+    max-width: 60px;
+    max-height: 70px;
+  }
+
+  @include animateBlock;
+  @include blockSize(null, null);
+}

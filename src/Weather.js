@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import "./Weather.css";
+import "./Weather.scss";
 import { RevolvingDot } from "react-loader-spinner";
 
 import WeatherInfo from "./WeatherInfo";
