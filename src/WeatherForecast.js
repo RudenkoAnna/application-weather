@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./WeatherForecast.css";
+import "./WeatherForecast.scss";
 import axios from "axios";
 import WeatherForecastDay from "./WeatherForecastDay";
 

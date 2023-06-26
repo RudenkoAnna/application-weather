@@ -18,6 +18,7 @@
       npm install react-loader-spinner --save
        npm install sass
        npm install -g jasmine
+       npm install jest react-testing-library
     Запустіть додаток за допомогою команди npm start.
     Відкрийте веб-браузер і перейдіть за адресою http://localhost:3000 для перегляду додатку.
 
