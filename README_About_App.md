@@ -63,3 +63,4 @@ UnitTests
 папка test-env містить файли з кодом та UnitTests .
 Загальний список кодів міститься в папці test-env/src/myfileforcode.js які почергово потрібно вставляти до файлу index.js з тієї ж папки
 Загальний список тестів міститься в папці test-env/tests/myfilefortests.js які почергово потрібно вставляти до файлу index.testes.js з тієї ж папки
+Файл test-env index.html запускає тести http://127.0.0.1:5500/test-env/index.html
