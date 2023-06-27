@@ -43,6 +43,7 @@
     ]
   },
   "devDependencies": {
+    "eslint": "^8.43.0",
     "sass": "^1.63.6"
   },
   "description": "React App for Weather forecast",
