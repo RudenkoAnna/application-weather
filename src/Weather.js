@@ -25,13 +25,10 @@ export default function Weather(props) {
     });
   }
   function search() {
-    const units = "metric";
-    axios
-      .get(`/api/weather?city=${city}&units=${units}`)
-      .then(handleResponse)
-      .catch((error) => {
-        console.error(error);
-      });
+    const apiKey = "39d0e5ab9f18d4b08648c0969ea4cd9f";
+    let units = "metric";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+    axios.get(apiUrl).then(handleResponse);
   }
   function handleSubmit(event) {
     event.preventDefault();
