@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "eslint": "^8.43.0",
+    "nodemon": "^2.0.22",
     "sass": "^1.63.6"
   },
   "description": "React App for Weather forecast",
