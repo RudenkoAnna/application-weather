@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import "./Weather.scss";
 import { RevolvingDot } from "react-loader-spinner";
@@ -9,31 +9,40 @@ import WeatherForecast from "./WeatherForecast";
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
+
+  useEffect(() => {
+    fetchWeatherData();
+  }, [fetchWeatherData]);
+
   function handleResponse(response) {
-    console.log(response.data);
     setWeatherData({
       ready: true,
       coordinates: response.data.coord,
-      temperature: response.data.main.temp,
-      feels_like: response.data.main.feels_like,
-      humidity: response.data.main.humidity,
-      wind: response.data.wind.speed,
-      city: response.data.name,
-      date: new Date(response.data.dt * 1000),
-      description: response.data.weather[0].description,
-      icon: response.data.weather[0].icon,
+      temperature: response.data.temperature,
+      feels_like: response.data.feels_like,
+      humidity: response.data.humidity,
+      wind: response.data.wind,
+      city: response.data.city,
+      date: new Date(response.data.date),
+      description: response.data.description,
+      icon: response.data.icon,
     });
   }
-  function search() {
-    const apiKey = "39d0e5ab9f18d4b08648c0969ea4cd9f";
-    let units = "metric";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
-    axios.get(apiUrl).then(handleResponse);
+
+  function fetchWeatherData() {
+    axios
+      .get(`http://localhost:5000/weather?location=${city}`)
+      .then(handleResponse)
+      .catch((error) => {
+        console.log("Error fetching weather data:", error);
+      });
   }
+
   function handleSubmit(event) {
     event.preventDefault();
-    search();
+    fetchWeatherData();
   }
+
   function handleCityChange(event) {
     setCity(event.target.value);
   }
@@ -66,7 +75,6 @@ export default function Weather(props) {
       </div>
     );
   } else {
-    search();
     return (
       <RevolvingDot
         height="100"

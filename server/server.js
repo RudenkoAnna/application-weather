@@ -1,8 +1,39 @@
-const express = require(`express`);
+const express = require("express");
+const axios = require("axios");
+
 const app = express();
-app.get("/api", (req, res) => {
-  req.json({ users: ["userOne", "userTwo", "userThree"] });
+const port = 5000; // Choose the port number you want to use
+
+const apiKey = "39d0e5ab9f18d4b08648c0969ea4cd9f";
+
+app.get("/weather", (req, res) => {
+  const { location } = req.query;
+  const apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`;
+
+  axios
+    .get(apiUrl)
+    .then((response) => {
+      const weatherData = {
+        temperature: response.data.main.temp,
+        feels_like: response.data.main.feels_like,
+        humidity: response.data.main.humidity,
+        wind: response.data.wind.speed,
+        city: response.data.name,
+        date: new Date(response.data.dt * 1000),
+        description: response.data.weather[0].description,
+        icon: response.data.weather[0].icon,
+      };
+      res.json(weatherData);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: "Unable to fetch weather data" });
+    });
 });
-app.listen(5000, () => {
-  console.log("Server started on port 5000 ");
+
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
+
+app.listen(3000, () => {
+  console.log("Server is running on port 3000");
 });
