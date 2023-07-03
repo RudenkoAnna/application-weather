@@ -31,7 +31,7 @@ export default function Weather(props) {
 
   function fetchWeatherData() {
     axios
-      .get(`http://localhost:5002/weather?location=${city}`)
+      .get(`http://localhost:3000/weather?location=${city}`)
       .then(handleResponse)
       .catch((error) => {
         console.log("Error fetching weather data:", error);
