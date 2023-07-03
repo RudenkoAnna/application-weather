@@ -12,7 +12,7 @@ export default function Weather(props) {
 
   useEffect(() => {
     fetchWeatherData();
-  }, [fetchWeatherData]);
+  }, []);
 
   function handleResponse(response) {
     setWeatherData({
