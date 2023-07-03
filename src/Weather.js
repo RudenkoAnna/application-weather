@@ -7,31 +7,19 @@ import WeatherInfo from "./WeatherInfo";
 import WeatherForecast from "./WeatherForecast";
 
 export default function Weather(props) {
-  const [weatherData, setWeatherData] = useState({ ready: false });
-  const [city, setCity] = useState(props.defaultCity);
+  const [weatherData, setWeatherData] = useState(null);
 
   useEffect(() => {
     fetchWeatherData();
-  });
+  }, [props.defaultCity]);
 
   function handleResponse(response) {
-    setWeatherData({
-      ready: true,
-      coordinates: response.data.coord,
-      temperature: response.data.temperature,
-      feels_like: response.data.feels_like,
-      humidity: response.data.humidity,
-      wind: response.data.wind,
-      city: response.data.city,
-      date: new Date(response.data.date),
-      description: response.data.description,
-      icon: response.data.icon,
-    });
+    setWeatherData(response.data);
   }
 
   function fetchWeatherData() {
     axios
-      .get(`http://localhost:3000/weather?location=${city}`)
+      .get(`http://localhost:5000/weather?location=${props.defaultCity}`)
       .then(handleResponse)
       .catch((error) => {
         console.log("Error fetching weather data:", error);
@@ -44,10 +32,10 @@ export default function Weather(props) {
   }
 
   function handleCityChange(event) {
-    setCity(event.target.value);
+    props.onCityChange(event.target.value);
   }
 
-  if (weatherData.ready) {
+  if (weatherData) {
     return (
       <div className="Weather">
         <form onSubmit={handleSubmit}>
