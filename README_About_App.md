@@ -64,3 +64,6 @@ UnitTests
 Загальний список кодів міститься в папці test-env/src/myfileforcode.js які почергово потрібно вставляти до файлу index.js з тієї ж папки
 Загальний список тестів міститься в папці test-env/tests/myfilefortests.js які почергово потрібно вставляти до файлу index.testes.js з тієї ж папки
 Файл test-env index.html запускає тести http://127.0.0.1:5500/test-env/index.html
+
+Docker provides a lightweight, efficient, and standardized way to package, deploy, and manage your server applications, offering increased flexibility, reproducibility, and scalability. It streamlines the development and deployment process, making it easier to manage complex server environments.
+To run docker write at the terminal docker run -p 5000:5000 my-image-weather
