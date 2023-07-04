@@ -10,10 +10,10 @@ app.use(cors({ credentials: true, origin: `http://localhost:3000` }));
 
 app.get("/weather", (req, res) => {
   const { location } = req.query;
-  const apiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`;
+  const weatherApiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`;
 
   axios
-    .get(apiUrl)
+    .get(weatherApiUrl)
     .then((response) => {
       const weatherData = {
         temperature: response.data.main.temp,
@@ -28,9 +28,26 @@ app.get("/weather", (req, res) => {
       res.json(weatherData);
     })
     .catch((error) => {
+      console.error(error);
       res.status(500).json({ error: "Unable to fetch weather data" });
     });
 });
+
+app.get("/weatherForecast", (req, res) => {
+  const { lat, lon } = req.query;
+  const forecastApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+
+  axios
+    .get(forecastApiUrl)
+    .then((response) => {
+      res.json(response.data.daily);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).json({ error: "Unable to fetch weather forecast" });
+    });
+});
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

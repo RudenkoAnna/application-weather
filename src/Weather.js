@@ -11,7 +11,7 @@ export default function Weather(props) {
 
   useEffect(() => {
     fetchWeatherData();
-  }, [props.defaultCity]);
+  });
 
   function handleResponse(response) {
     setWeatherData(response.data);
