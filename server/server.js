@@ -1,12 +1,20 @@
 const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
+const rateLimit = require("express-rate-limit");
 
 const app = express();
 const port = 5000;
 
-const apiKey = "39d0e5ab9f18d4b08648c0969ea4cd9f";
+const apiKey = "67bd5f95b927ba25009785402ef4eff3";
 app.use(cors({ credentials: true, origin: `http://localhost:3000` }));
+
+const limiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 60, // Max number of requests per minute
+});
+
+app.use(limiter);
 
 app.get("/weather", (req, res) => {
   const { location } = req.query;
@@ -32,6 +40,7 @@ app.get("/weather", (req, res) => {
       res.status(500).json({ error: "Unable to fetch weather data" });
     });
 });
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
