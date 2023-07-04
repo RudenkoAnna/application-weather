@@ -3,7 +3,7 @@ const axios = require("axios");
 const cors = require("cors");
 
 const app = express();
-const port = 5002;
+const port = 5000;
 
 const apiKey = "39d0e5ab9f18d4b08648c0969ea4cd9f";
 app.use(cors({ credentials: true, origin: `http://localhost:3000` }));
