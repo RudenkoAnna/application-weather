@@ -12,7 +12,7 @@ export default function WeatherForecast(props) {
 
     async function fetchData() {
       try {
-        const apiKey = "7ff281c2c6e2349fc0ada2d7b5f58312";
+        const apiKey = "0052a48fbac75b731edfa5e0333ad1e1";
         const { lat, lon } = props.coordinates;
 
         const apiUrl = `http://localhost:5000/weatherForecast?lat=${lat}&lon=${lon}&apiKey=${apiKey}`;
