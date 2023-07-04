@@ -6,7 +6,7 @@ const rateLimit = require("express-rate-limit");
 const app = express();
 const port = 5000;
 
-const apiKey = "67bd5f95b927ba25009785402ef4eff3";
+const apiKey = "7ff281c2c6e2349fc0ada2d7b5f58312";
 app.use(cors({ credentials: true, origin: `http://localhost:3000` }));
 
 const limiter = rateLimit({
