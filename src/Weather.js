@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import "./Weather.scss";
 import { RevolvingDot } from "react-loader-spinner";
@@ -10,9 +10,18 @@ export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
 
+  const fetchWeatherData = useCallback(() => {
+    axios
+      .get(`http://localhost:5000/weather?location=${city}`)
+      .then(handleResponse)
+      .catch((error) => {
+        console.log("Error fetching weather data:", error);
+      });
+  }, [city]);
+
   useEffect(() => {
     fetchWeatherData();
-  });
+  }, [fetchWeatherData]);
 
   function handleResponse(response) {
     setWeatherData({
@@ -27,15 +36,6 @@ export default function Weather(props) {
       description: response.data.description,
       icon: response.data.icon,
     });
-  }
-
-  function fetchWeatherData() {
-    axios
-      .get(`http://localhost:5000/weather?location=${city}`)
-      .then(handleResponse)
-      .catch((error) => {
-        console.log("Error fetching weather data:", error);
-      });
   }
 
   function handleSubmit(event) {
