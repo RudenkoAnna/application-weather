@@ -66,4 +66,5 @@ UnitTests
 Файл test-env index.html запускає тести http://127.0.0.1:5500/test-env/index.html
 
 Docker provides a lightweight, efficient, and standardized way to package, deploy, and manage your server applications, offering increased flexibility, reproducibility, and scalability. It streamlines the development and deployment process, making it easier to manage complex server environments.
-To run docker write at the terminal docker run -p 5000:5000 my-image-weather
+To run docker write at the terminal docker run -p 5001:5000 my-image-weather
+Deployed on Render https://second-project-backend-part.onrender.com/
