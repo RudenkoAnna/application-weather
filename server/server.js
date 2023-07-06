@@ -5,6 +5,7 @@ const rateLimit = require("express-rate-limit");
 const swaggerUI = require("swagger-ui-express");
 const swaggerJsDoc = require("swagger-jsdoc");
 const weatherRouter = require("./routes/weatherapi");
+const weatherForecastRouter = require("./routes/weatherForecastApi");
 
 const app = express();
 const port = 5000;
@@ -32,7 +33,7 @@ const options = {
       },
     ],
   },
-  apis: ["./routes/weatherapi.js"],
+  apis: ["./routes/weatherapi.js", "./routes/weatherForecastApi.js"],
 };
 
 const specs = swaggerJsDoc(options);
@@ -44,6 +45,7 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 app.use("/api", weatherRouter);
+app.use("/api", weatherForecastRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

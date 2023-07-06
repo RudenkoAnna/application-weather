@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./WeatherForecast.scss";
 import axios from "axios";
 import WeatherForecastDay from "./WeatherForecastDay";
@@ -12,10 +12,9 @@ export default function WeatherForecast(props) {
 
     async function fetchData() {
       try {
-        const apiKey = "67bd5f95b927ba25009785402ef4eff3";
         const { lat, lon } = props.coordinates;
 
-        const apiUrl = `http://localhost:5000/weatherForecast?lat=${lat}&lon=${lon}&apiKey=${apiKey}`;
+        const apiUrl = `http://localhost:5000/api/weatherForecast?lat=${lat}&lon=${lon}`;
 
         const response = await axios.get(apiUrl);
         handleResponse(response.data);
@@ -28,7 +27,7 @@ export default function WeatherForecast(props) {
   }, [props.coordinates]);
 
   function handleResponse(data) {
-    setForecast(data);
+    setForecast(data.forecast);
     setLoaded(true);
   }
 
