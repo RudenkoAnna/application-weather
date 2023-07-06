@@ -14,7 +14,7 @@ app.use(cors({ credentials: true, origin: `http://localhost:3000` }));
 
 const limiter = rateLimit({
   windowMs: 60 * 1000, // 1 minute
-  max: 60, // Max number of requests per minute
+  max: 10, // Max number of requests per minute
 });
 
 app.use(limiter);
