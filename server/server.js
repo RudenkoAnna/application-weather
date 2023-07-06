@@ -1,12 +1,14 @@
 const express = require("express");
-const axios = require("axios");
 const cors = require("cors");
+const morgan = require("morgan");
 const rateLimit = require("express-rate-limit");
+const swaggerUI = require("swagger-ui-express");
+const swaggerJsDoc = require("swagger-jsdoc");
+const weatherRouter = require("./routes/weatherapi");
 
 const app = express();
 const port = 5000;
 
-const apiKey = "67bd5f95b927ba25009785402ef4eff3";
 app.use(cors({ credentials: true, origin: `http://localhost:3000` }));
 
 const limiter = rateLimit({
@@ -16,30 +18,32 @@ const limiter = rateLimit({
 
 app.use(limiter);
 
-app.get("/weather", (req, res) => {
-  const { location } = req.query;
-  const weatherApiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${apiKey}&units=metric`;
+const options = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Weather API",
+      version: "1.0.0",
+      description: "API for retrieving weather data",
+    },
+    servers: [
+      {
+        url: `http://localhost:${port}`,
+      },
+    ],
+  },
+  apis: ["./routes/weatherapi.js"],
+};
 
-  axios
-    .get(weatherApiUrl)
-    .then((response) => {
-      const weatherData = {
-        temperature: response.data.main.temp,
-        feels_like: response.data.main.feels_like,
-        humidity: response.data.main.humidity,
-        wind: response.data.wind.speed,
-        city: response.data.name,
-        date: new Date(response.data.dt * 1000),
-        description: response.data.weather[0].description,
-        icon: response.data.weather[0].icon,
-      };
-      res.json(weatherData);
-    })
-    .catch((error) => {
-      console.error(error);
-      res.status(500).json({ error: "Unable to fetch weather data" });
-    });
-});
+const specs = swaggerJsDoc(options);
+
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(specs));
+
+app.use(cors());
+app.use(express.json());
+app.use(morgan("dev"));
+
+app.use("/api", weatherRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
