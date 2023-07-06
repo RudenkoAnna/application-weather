@@ -32,6 +32,14 @@ export default function App() {
             rel="noopener noreferrer"
           >
             hosted on Netlify
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://adjusted-second-project.onrender.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            backend project hosted on Render
           </a>
         </footer>
       </div>
