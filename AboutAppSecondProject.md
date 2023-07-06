@@ -20,13 +20,19 @@
        npm install sass
        npm install -g jasmine
        npm install jest react-testing-library
-    Запустіть додаток за допомогою команди npm start.
+    Запустіть додаток за допомогою команди:
+     npm start. для сторони клієнта
+     node server.js для сторони сервера
     Відкрийте веб-браузер і перейдіть за адресою http://localhost:3000 для перегляду додатку.
 
 Так як додаток deployed через netlify, він також доступний за лінком : https://stunning-taffy-859f8a.netlify.app/
 Що набагато спрощує процедуру запуску та перевірку самого функціоналу.
 
 Поточні файли виглядають наступним чином:
+папка server включає в собі папку routes, node_modules та основні файли
+routes-> weatherapi.js має сам роутер та документацію для swagger
+node_modules -вклчає в собі необхідні node пакети
+server.js - основний файл серверу який комунікує з клієнтом Weather.js
 
     Weather.js:
         Цей файл містить компонент WeatherForecast , який відповідає за форму пошуку міста і взаємодію з нею.
@@ -35,6 +41,7 @@
         У компоненті є обробник події handleCityChange, який встановлює значення міста на основі введеного користувачем значення в поле введення.
         Також є обробник події handleSubmit, який викликається при натисканні кнопки "Search" і викликає функцію onSearch з передачею міста в якості аргументу.
         Компонент має розмітку, яка відображає поле введення та кнопку пошуку.
+        він також виступає клієнтом серверу server.js який містить в собі API key + api link
 
     WeatherInfo.js:
         Цей файл містить компонентb WeatherInfo , WeatherForecastDay,  який відповідає за відображення прогнозу погоди.
@@ -67,7 +74,9 @@ UnitTests
 Файл test-env index.html запускає тести http://127.0.0.1:5500/test-env/index.html
 
 Docker provides a lightweight, efficient, and standardized way to package, deploy, and manage your server applications, offering increased flexibility, reproducibility, and scalability. It streamlines the development and deployment process, making it easier to manage complex server environments.
-To run docker write at the terminal docker run -p 5001:5000 my-image-weather
+To run docker write at the terminal:
+docker run -p 5001:5000 my-image-weather
+
 Deployed on Render https://second-project-backend-part.onrender.com/
 
 Додала Swagger  
