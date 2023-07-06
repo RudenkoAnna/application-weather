@@ -32,7 +32,7 @@
 папка server включає в собі папку routes, node_modules та основні файли
 routes-> weatherapi.js має сам роутер та документацію для swagger
 node_modules -вклчає в собі необхідні node пакети
-server.js - основний файл серверу який комунікує з клієнтом Weather.js
+server.js - основний файл серверу який комунікує з клієнтом Weather.js та WeatherForecast.js
 
     Weather.js:
         Цей файл містить компонент WeatherForecast , який відповідає за форму пошуку міста і взаємодію з нею.
@@ -82,3 +82,5 @@ Deployed on Render https://second-project-backend-part.onrender.com/
 Додала Swagger  
 після запуску node server.js Api документація доступна за адресою :
 http://localhost:5000/api-docs
+
+Використала Docker проте сам image згенерувався але є певний конфлікт з локальною Windows системою і при запуску локаьно через docker видає помилку що вже запущено щось по порту 5000 ( використання 5001 теж не ма саме результативне рішення )
